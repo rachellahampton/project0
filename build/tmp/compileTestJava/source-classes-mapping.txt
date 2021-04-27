@@ -1,0 +1,2 @@
+com/test/HelloJUnitTest.java
+ com.test.HelloJUnitTest
