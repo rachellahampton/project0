@@ -78,6 +78,7 @@ public class Account {
 
     public void setBalance(int balance) {
         this.balance = balance;
+
     }
 
     public boolean isClosed() {
@@ -137,6 +138,8 @@ public class Account {
     public void setPassword(String password) {
       this.password = password;
     }
+
+
 
     @Override
     public String toString() {

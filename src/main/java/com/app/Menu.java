@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Menu {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BusinessException, SQLException {
 
         boolean login = false;
 
@@ -32,36 +32,49 @@ public class Menu {
         account.setPassword(sc.nextLine());
         System.out.println("Enter your account number");
         account.setAccountNumber(Integer.parseInt(sc.nextLine()));
-        showMenu();
+    //    System.out.println("your custid is " + account.getCustId() + account.getName() + account.getUsername() +
+     //           account.getPassword() + account.getAccountNumber());
+        //  showMenu();
 
-        CustomerDAO customerDAO = new Customer();
-
-        try {
+       CustomerDAO customerDAO = new Customer();
+       try {
             account = customerDAO.createAccount(account);
-            if(account.getCustId()!=0) {
+            if(account.getCustId() != 0) {
+                System.out.println("You did it and here is it the details");
+                System.out.println(account);
+            }
+          // customerDAO.createAccount(account);
+       } catch (SQLException | BusinessException e) {
+           System.out.println("it didnt work" + e);
+           e.printStackTrace();
+       }
+
+      //  account = customerDAO.createAccount(account.getCustId(), account.getName(), account.getUsername(), account.getPassword(), account.getAccountNumber());
+    //    System.out.println(account);
+
+       /* try {
+
+            account = customerDAO.createAccount(account.getCustId(), account.getName(), account.getUsername(), account.getPassword(), account.getAccountNumber());
+            if (account.getCustId() != 0) {
                 System.out.println("Customer registered successfully with below details");
                 System.out.println(account);
             }
-            } catch (SQLException | BusinessException e) {
-                System.out.println("Internal error occured...Please contact SYSADMIN " + e);
-            }
-
-
-        //   if (username && password .equals()) {
-        // I set the boolean login to false until it passes a validation of some sort
-        //     if (login = true) {
-
-        System.out.println("\n");
-        //       } else {
-        //          System.out.println("Incorrect login");
-
+        } catch (SQLException | BusinessException e) {
+            System.out.println("Internal error occured...Please contact SYSADMIN " + e);
+        }
     }
 
-   //     }
 
+        /*  if (username && password .equals()) {
+         I set the boolean login to false until it passes a validation of some sort
+           if (login = true) {
 
+       System.out.println("\n");
+              } else {
+                 System.out.println("Incorrect login");
 
-
+*/
+   /*
 
 
 
@@ -108,7 +121,7 @@ public class Menu {
                     System.out.println();
                     break;
             }
-
+*/
         }
 
 

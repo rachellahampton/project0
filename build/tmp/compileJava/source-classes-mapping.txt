@@ -1,7 +1,7 @@
-com/app/model/Employee.java
- com.app.model.Employee
 com/app/dao/EmployeeDAO.java
  com.app.dao.EmployeeDAO
+com/app/model/Employee.java
+ com.app.model.Employee
 com/app/dbutil/PostgreConnection.java
  com.app.dbutil.PostgreConnection
 com/app/BusinessException.java
