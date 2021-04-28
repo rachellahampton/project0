@@ -13,6 +13,8 @@ import java.util.Scanner;
 public class Menu {
 
 
+
+
     public static void main(String[] args) throws BusinessException, SQLException {
 
         boolean login = false;
@@ -32,12 +34,13 @@ public class Menu {
         account.setPassword(sc.nextLine());
         System.out.println("Enter your account number");
         account.setAccountNumber(Integer.parseInt(sc.nextLine()));
-    //    System.out.println("your custid is " + account.getCustId() + account.getName() + account.getUsername() +
-     //           account.getPassword() + account.getAccountNumber());
+        System.out.println("your custid is " + account.getCustId() + account.getName() + account.getUsername() +
+                account.getPassword() + account.getAccountNumber());
         //  showMenu();
 
-       CustomerDAO customerDAO = new Customer();
+      // CustomerDAO customerDAO = new Customer();
        try {
+           CustomerDAO customerDAO = new Customer();
             account = customerDAO.createAccount(account);
             if(account.getCustId() != 0) {
                 System.out.println("You did it and here is it the details");
