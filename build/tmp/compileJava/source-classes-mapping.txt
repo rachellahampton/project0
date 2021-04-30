@@ -14,3 +14,5 @@ com/app/dao/CustomerDAO.java
  com.app.dao.CustomerDAO
 com/app/Menu.java
  com.app.Menu
+com/app/model/Menus.java
+ com.app.model.Menus

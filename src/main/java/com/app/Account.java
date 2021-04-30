@@ -1,29 +1,43 @@
 package com.app;
 
+import java.util.List;
+
 public class Account {
-  private int accountNumber;
-   private int custId;
+  private long accountNumber;
+   private long custId;
    private String name;
    private String username;
    private String password;
-   private int balance = 0;
+   private double balance = 0.00;
    private boolean open;
    private boolean closed;
+   private boolean isValidLogin;
    private double previousTransaction;
 
 
 
-  public Account(int custid, String name, String username, String password, int accountNumber) {
+
+  public Account(long custid, String name, String username, String password, long accountNumber, double balance) {
     this.custId = custid;
     this.name = name;
     this.username = username;
     this.password = password;
     this.accountNumber = accountNumber;
+    this.balance = balance;
   }
 
+    public Account(long custid, String name, String username, String password, long accountNumber, boolean open) {
+        this.custId = custid;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.accountNumber = accountNumber;
+        this.open = open;
+    }
 
 
-    Account(int accountNumber, int custId, String name, int balance, boolean open) {
+
+    Account(long accountNumber, long custId, String name, double balance, boolean open) {
         this.accountNumber = accountNumber;
         this.custId = custId;
         this.name = name;
@@ -31,12 +45,20 @@ public class Account {
         this.open = open;
     }
 
-   public Account (int custId, String name) {
+   public Account (long custId, String name) {
        this.custId = custId;
        this.name = name;
     }
 
-    public Account(int accountNumber) {
+    public Account(String username, String password) {
+      this.username = username;
+      this.password = password;
+
+    }
+
+
+
+    public Account(long accountNumber) {
        this.accountNumber = accountNumber;
     }
 
@@ -44,22 +66,25 @@ public class Account {
 
     }
 
-
-    public int getAccountNumber() {
-    //   accountNumber = ((int) (Math.random() * 9876));
+  /*  public boolean validLogin(){
+      if()
+      return
+    } */
+    public long getAccountNumber() {
+       accountNumber = ((long) (Math.random() * 98768756));
        return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(long accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public int getCustId() {
-   //    custId = ((int) (Math.random() * 20303));
+    public long getCustId() {
+       custId = ((long) (Math.random() * 20303));
         return custId;
     }
 
-    public void setCustId(int custId) {
+    public void setCustId(long custId) {
         this.custId = custId;
     }
 
@@ -71,12 +96,12 @@ public class Account {
         this.name = name;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         getPreviousTransaction();
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
 
     }
@@ -93,7 +118,7 @@ public class Account {
     }
 
     public boolean isOpen() {
-       if(balance >= 0 ) {
+       if(balance >= 1.00 ) {
           open = true;
        }
         return open;
@@ -103,14 +128,14 @@ public class Account {
         this.open = open;
     }
 
-    public void deposit ( int amount){
+    public void deposit ( double amount){
         if (amount != 0) {
             balance = balance + amount;
             previousTransaction = amount;
         }
     }
 
-    public void withdraw ( int amount){
+    public void withdraw (double amount){
         balance = balance + amount;
         previousTransaction = -amount;
     }
@@ -139,6 +164,9 @@ public class Account {
       this.password = password;
     }
 
+    public void pullFromDatabase() {
+
+    }
 
 
     @Override

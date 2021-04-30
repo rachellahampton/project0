@@ -13,16 +13,93 @@ import java.util.Scanner;
 public class Menu {
 
 
+    public void showMenu() throws BusinessException, SQLException {
+        int options = 0;
+        double deposit;
+        double withdraw;
+
+        Scanner scanner = new Scanner(System.in);
+        Account account = new Account();
+        CustomerDAO dao = new Customer();
+      //  account = dao.updateDatabase(account);
+        do {
+            System.out.println("Welcome to bank login!" + account.getName() +  " How may we help you today?");
+            System.out.println("\n");
+            System.out.println("1) Check Balance");
+            System.out.println("2) Deposit");
+            System.out.println("3) Withdraw");
+            System.out.println("4) Previous transaction");
+            System.out.println("5) Exit");
+            System.out.println("*********************************************");
+            System.out.println("Enter an option");
+            try {
+                options = Integer.parseInt(scanner.nextLine());
+            }catch (NumberFormatException e){}
+            options = scanner.nextInt();
+
+        } while (options != 5);
+        switch (options) {
+            case 1:
+                account = dao.checkBalance(account);
+                System.out.println("Your balance is " + account);
+              //  account.getBalance();
+                break;
+
+            case 2:
+                System.out.println("Enter an amount to deposit");
+                deposit = scanner.nextInt();
+                account.deposit(deposit);
+                break;
+
+            case 3:
+                System.out.println("Enter an amount to withdraw");
+                withdraw = scanner.nextInt();
+                account.withdraw(withdraw);
+                break;
+
+            case 4:
+                account.getPreviousTransaction();
+                System.out.println();
+                break;
+        }
+    }
 
 
-    public static void main(String[] args) throws BusinessException, SQLException {
+    public void loginValidation() throws BusinessException, SQLException {
+        boolean isLoggedIn = false;
+        Account account = new Account();
+        Scanner scanner = new Scanner(System.in);
+        CustomerDAO customerDAO = new Customer();
+        System.out.println("Please enter your username");
+        String username = scanner.nextLine();
+        account.setUsername(username);
+        System.out.println("Please enter your password");
+        String password = scanner.nextLine();
+        account.setPassword(password);
+        account = customerDAO.pullFromDatabase(account);
+        if (account != null) {
+            isLoggedIn = true;
+            showMenu();
+        } else {
 
-        boolean login = false;
+        }
+    }
+}
 
+
+
+
+
+
+
+/*  public static void databaseInsert() {
         Account account;
 
         account = new Account();
         Scanner sc = new Scanner(System.in);
+
+        // showMenu();
+
         System.out.println("Welcome ");
         System.out.println("Enter your customer id");
         account.setCustId(Integer.parseInt(sc.nextLine()));
@@ -34,100 +111,33 @@ public class Menu {
         account.setPassword(sc.nextLine());
         System.out.println("Enter your account number");
         account.setAccountNumber(Integer.parseInt(sc.nextLine()));
-        System.out.println("your custid is " + account.getCustId() + account.getName() + account.getUsername() +
-                account.getPassword() + account.getAccountNumber());
+        // System.out.println("your custid is \n" + account.getCustId() + "your name is \n " + account.getName() + "your username is \n" + account.getUsername() +
+        //      "your password is \n " +  account.getPassword() + "your account number is \n " + account.getAccountNumber());
         //  showMenu();
 
-      // CustomerDAO customerDAO = new Customer();
-       try {
-           CustomerDAO customerDAO = new Customer();
+
+        try {
+            Customer customer = new Customer();
+            CustomerDAO customerDAO = new Customer();
+
             account = customerDAO.createAccount(account);
-            if(account.getCustId() != 0) {
+            if (account.getCustId() != 0) {
                 System.out.println("You did it and here is it the details");
                 System.out.println(account);
             }
-          // customerDAO.createAccount(account);
-       } catch (SQLException | BusinessException e) {
-           System.out.println("it didnt work" + e);
-           e.printStackTrace();
-       }
 
-      //  account = customerDAO.createAccount(account.getCustId(), account.getName(), account.getUsername(), account.getPassword(), account.getAccountNumber());
-    //    System.out.println(account);
-
-       /* try {
-
-            account = customerDAO.createAccount(account.getCustId(), account.getName(), account.getUsername(), account.getPassword(), account.getAccountNumber());
-            if (account.getCustId() != 0) {
-                System.out.println("Customer registered successfully with below details");
-                System.out.println(account);
-            }
         } catch (SQLException | BusinessException e) {
-            System.out.println("Internal error occured...Please contact SYSADMIN " + e);
-        }
-    }
-
-
-        /*  if (username && password .equals()) {
-         I set the boolean login to false until it passes a validation of some sort
-           if (login = true) {
-
-       System.out.println("\n");
-              } else {
-                 System.out.println("Incorrect login");
-
-*/
-   /*
-
-
-
-
-
-        public static void showMenu () {
-            int options;
-            int deposit;
-            int withdraw;
-            Scanner scanner = new Scanner(System.in);
-            Account account = new Account();
-            do {
-                System.out.println("Welcome to bank login! How may we help you today?");
-                System.out.println("\n");
-                System.out.println("1) Check Balance");
-                System.out.println("2) Deposit");
-                System.out.println("3) Withdraw");
-                System.out.println("4) Previous transaction");
-                System.out.println("5) Exit");
-                System.out.println("*********************************************");
-                System.out.println("Enter an option");
-                options = scanner.nextInt();
-
-            } while (options != 4);
-            switch (options) {
-                case 0:
-                    account.getBalance();
-                    break;
-
-                case 1:
-                    System.out.println("Enter an amount to deposit");
-                    deposit = scanner.nextInt();
-                    account.deposit(deposit);
-                    break;
-
-                case 2:
-                    System.out.println("Enter an amount to withdraw");
-                    withdraw = scanner.nextInt();
-                    account.withdraw(withdraw);
-                    break;
-
-                case 3:
-                    account.getPreviousTransaction();
-                    System.out.println();
-                    break;
-            }
-*/
+            System.out.println("it didnt work" + e);
+            e.printStackTrace();
         }
 
+    }    */
 
 
-    }
 
+/*   public static void main(String[] args) throws BusinessException, SQLException {
+
+        boolean login = false;
+
+
+    }*/
